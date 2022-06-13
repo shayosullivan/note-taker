@@ -46,3 +46,9 @@ app.get("/notes", (req, res) =>
 app.get("/api/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./db/db.json"));
 });
+
+app.delete("/api/notes/:id", function (req, res) {
+  notes.splice(req.params.id, 1);
+  updateDb();
+  console.log("Deleted note with id " + req.params.id);
+});
